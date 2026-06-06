@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_localiza_bodega_formulario" model="ir.sequence">
+        <field name="name">Formulario Operativo</field>
+        <field name="code">localiza.bodega.formulario</field>
+        <field name="prefix">FORM/%(year)s/</field>
+        <field name="padding">5</field>
+    </record>
+    <record id="seq_localiza_bodega_asignacion" model="ir.sequence">
+        <field name="name">Asignacion Operativa</field>
+        <field name="code">localiza.bodega.asignacion</field>
+        <field name="prefix">ASIG/%(year)s/</field>
+        <field name="padding">5</field>
+    </record>
+    <record id="localiza_bodega_dashboard_main" model="localiza.bodega.dashboard">
+        <field name="name">Panel Principal</field>
+    </record>
+</odoo>

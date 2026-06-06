@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_localiza_puesto_user,localiza.puesto.user,model_localiza_puesto,base.group_user,1,1,1,1
+access_localiza_bodega_articulo_user,localiza.bodega.articulo.user,model_localiza_bodega_articulo,base.group_user,1,1,1,1
+access_localiza_bodega_asignacion_user,localiza.bodega.asignacion.user,model_localiza_bodega_asignacion,base.group_user,1,1,1,1
+access_localiza_bodega_asignacion_line_user,localiza.bodega.asignacion.line.user,model_localiza_bodega_asignacion_line,base.group_user,1,1,1,1
+access_localiza_bodega_formulario_user,localiza.bodega.formulario.user,model_localiza_bodega_formulario,base.group_user,1,1,1,1
+access_localiza_bodega_formulario_line_user,localiza.bodega.formulario.line.user,model_localiza_bodega_formulario_line,base.group_user,1,1,1,1
+access_localiza_bodega_formulario_accessory_user,localiza.bodega.formulario.accessory.user,model_localiza_bodega_formulario_accessory,base.group_user,1,1,1,1
+access_localiza_bodega_dashboard_user,localiza.bodega.dashboard.user,model_localiza_bodega_dashboard,base.group_user,1,1,1,1

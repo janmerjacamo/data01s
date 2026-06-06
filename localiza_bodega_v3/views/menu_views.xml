@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_localiza_bodega_dashboard" model="ir.actions.act_window">
+        <field name="name">Panel Principal</field>
+        <field name="res_model">localiza.bodega.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="res_id" ref="localiza_bodega_dashboard_main"/>
+        <field name="target">current</field>
+    </record>
+
+    <menuitem id="menu_localiza_bodega_root" name="Bodega Operativa" sequence="10"/>
+    <menuitem id="menu_localiza_bodega_dashboard" name="Panel Principal" parent="menu_localiza_bodega_root" action="action_localiza_bodega_dashboard" sequence="1"/>
+
+    <record id="action_localiza_bodega_formulario" model="ir.actions.act_window"><field name="name">Formularios Operativos</field><field name="res_model">localiza.bodega.formulario</field><field name="view_mode">list,form</field></record>
+    <record id="action_localiza_bodega_asignacion" model="ir.actions.act_window"><field name="name">Asignaciones</field><field name="res_model">localiza.bodega.asignacion</field><field name="view_mode">list,form</field></record>
+    <record id="action_localiza_bodega_articulo" model="ir.actions.act_window"><field name="name">Articulos Operativos</field><field name="res_model">localiza.bodega.articulo</field><field name="view_mode">list,form</field></record>
+    <record id="action_localiza_puesto" model="ir.actions.act_window"><field name="name">Puestos</field><field name="res_model">localiza.puesto</field><field name="view_mode">list,form</field></record>
+
+    <menuitem id="menu_localiza_bodega_operacion" name="Operacion" parent="menu_localiza_bodega_root" sequence="10"/>
+    <menuitem id="menu_localiza_bodega_formularios" name="Formularios Operativos" parent="menu_localiza_bodega_operacion" action="action_localiza_bodega_formulario" sequence="10"/>
+    <menuitem id="menu_localiza_bodega_asignaciones" name="Asignaciones" parent="menu_localiza_bodega_operacion" action="action_localiza_bodega_asignacion" sequence="20"/>
+
+    <menuitem id="menu_localiza_bodega_maestros" name="Maestros" parent="menu_localiza_bodega_root" sequence="20"/>
+    <menuitem id="menu_localiza_bodega_puestos" name="Puestos" parent="menu_localiza_bodega_maestros" action="action_localiza_puesto" sequence="10"/>
+    <menuitem id="menu_localiza_bodega_articulos" name="Articulos Operativos" parent="menu_localiza_bodega_maestros" action="action_localiza_bodega_articulo" sequence="20"/>
+</odoo>

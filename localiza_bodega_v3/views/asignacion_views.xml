@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_localiza_bodega_asignacion_list" model="ir.ui.view">
+        <field name="name">localiza.bodega.asignacion.list</field><field name="model">localiza.bodega.asignacion</field>
+        <field name="arch" type="xml"><list><field name="name"/><field name="date"/><field name="assignment_type"/><field name="puesto_id"/><field name="receiver_name"/><field name="state"/></list></field>
+    </record>
+    <record id="view_localiza_bodega_asignacion_form" model="ir.ui.view">
+        <field name="name">localiza.bodega.asignacion.form</field><field name="model">localiza.bodega.asignacion</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Confirmar" class="btn-primary"/>
+                    <button name="action_close" type="object" string="Cerrar"/>
+                    <button name="action_cancel" type="object" string="Cancelar"/>
+                    <button name="action_print_assignment" type="object" string="Imprimir"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name" readonly="1"/></h1></div>
+                    <group><group><field name="date"/><field name="assignment_type"/><field name="puesto_id"/><field name="origin_puesto_id"/><field name="destination_puesto_id"/></group><group><field name="delivered_by"/><field name="receiver_name"/><field name="receiver_dpi"/><field name="requested_by"/><field name="motive"/></group></group>
+                    <notebook>
+                        <page string="Lineas"><field name="line_ids"><list editable="bottom"><field name="articulo_id"/><field name="product_id"/><field name="name"/><field name="code"/><field name="quantity"/><field name="condition"/><field name="notes"/></list></field></page>
+                        <page string="Firmas y documento"><group><field name="document_filename"/><field name="document_file" filename="document_filename"/><field name="signature_receiver" widget="image"/><field name="signature_responsible" widget="image"/></group></page>
+                        <page string="Observaciones"><field name="notes"/></page>
+                    </notebook>
+                </sheet><chatter/>
+            </form>
+        </field>
+    </record>
+</odoo>
