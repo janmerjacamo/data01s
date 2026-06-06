@@ -1,0 +1,196 @@
+<odoo>
+    <record id="view_localiza_forms_operation_list" model="ir.ui.view">
+        <field name="name">localiza.forms.operation.list</field>
+        <field name="model">localiza.forms.operation</field>
+        <field name="arch" type="xml">
+            <list string="Formularios Operativos" decoration-muted="state == 'cancelled'" decoration-success="state == 'closed'" decoration-info="state == 'validated'">
+                <field name="name"/>
+                <field name="folio"/>
+                <field name="form_type"/>
+                <field name="date"/>
+                <field name="puesto_id"/>
+                <field name="receiver_name"/>
+                <field name="main_serial"/>
+                <field name="line_count"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_localiza_forms_operation_form" model="ir.ui.view">
+        <field name="name">localiza.forms.operation.form</field>
+        <field name="model">localiza.forms.operation</field>
+        <field name="arch" type="xml">
+            <form string="Formulario Operativo">
+                <header>
+                    <button name="action_validate" type="object" string="Validar" class="btn-primary"/>
+                    <button name="action_close" type="object" string="Cerrar"/>
+                    <button name="action_reset_draft" type="object" string="Regresar a borrador"/>
+                    <button name="action_cancel" type="object" string="Cancelar"/>
+                    <button name="action_print_form" type="object" string="Imprimir formulario" class="btn-secondary"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,validated,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Datos del formulario">
+                            <field name="form_type"/>
+                            <field name="folio"/>
+                            <field name="date"/>
+                            <field name="user_id"/>
+                            <field name="movement_type"/>
+                        </group>
+                        <group string="Puestos y ubicacion">
+                            <field name="puesto_id"/>
+                            <field name="puesto_origen_id"/>
+                            <field name="puesto_destino_id"/>
+                            <field name="location_text"/>
+                            <field name="gps_coordinates"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Personas">
+                            <group>
+                                <group>
+                                    <field name="responsible_id"/>
+                                    <field name="employee_id"/>
+                                    <field name="delivered_by"/>
+                                    <field name="requested_by"/>
+                                </group>
+                                <group>
+                                    <field name="receiver_name"/>
+                                    <field name="receiver_dpi"/>
+                                    <field name="supervisor_name"/>
+                                    <field name="guard_name"/>
+                                    <field name="installer_name"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Datos operativos">
+                            <group>
+                                <group>
+                                    <field name="main_serial"/>
+                                    <field name="controlled_qty"/>
+                                    <field name="expiration_date"/>
+                                </group>
+                                <group>
+                                    <field name="motive"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="observations"/>
+                                <field name="summary"/>
+                                <field name="legal_text"/>
+                            </group>
+                        </page>
+                        <page string="Lineas / articulos">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="section_id"/>
+                                    <field name="product_id"/>
+                                    <field name="articulo_id"/>
+                                    <field name="name"/>
+                                    <field name="code"/>
+                                    <field name="serial"/>
+                                    <field name="qty"/>
+                                    <field name="movement"/>
+                                    <field name="condition"/>
+                                    <field name="entry_ok"/>
+                                    <field name="exit_ok"/>
+                                </list>
+                                <form>
+                                    <sheet>
+                                        <group>
+                                            <group>
+                                                <field name="section_id"/>
+                                                <field name="product_id"/>
+                                                <field name="articulo_id"/>
+                                                <field name="name"/>
+                                                <field name="code"/>
+                                                <field name="serial"/>
+                                            </group>
+                                            <group>
+                                                <field name="qty"/>
+                                                <field name="uom"/>
+                                                <field name="movement"/>
+                                                <field name="condition"/>
+                                                <field name="entry_ok"/>
+                                                <field name="exit_ok"/>
+                                            </group>
+                                        </group>
+                                        <group>
+                                            <field name="photo" filename="photo_name" widget="image"/>
+                                            <field name="photo_name"/>
+                                            <field name="notes"/>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Fotos y documentos">
+                            <group>
+                                <group>
+                                    <field name="photo_main" filename="photo_main_name" widget="image"/>
+                                    <field name="photo_main_name"/>
+                                    <field name="photo_document" filename="photo_document_name" widget="image"/>
+                                    <field name="photo_document_name"/>
+                                </group>
+                                <group>
+                                    <field name="photo_extra" filename="photo_extra_name" widget="image"/>
+                                    <field name="photo_extra_name"/>
+                                    <field name="original_pdf" filename="original_pdf_name"/>
+                                    <field name="original_pdf_name"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Firmas">
+                            <group>
+                                <field name="signature_responsible" widget="image"/>
+                                <field name="signature_receiver" widget="image"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_localiza_forms_operation" model="ir.actions.act_window">
+        <field name="name">Formularios Operativos V2</field>
+        <field name="res_model">localiza.forms.operation</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="action_localiza_forms_entrega" model="ir.actions.act_window">
+        <field name="name">Entrega desde Bodega</field>
+        <field name="res_model">localiza.forms.operation</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('form_type','=','entrega_bodega')]</field>
+        <field name="context">{'default_form_type':'entrega_bodega','default_movement_type':'salida'}</field>
+    </record>
+    <record id="action_localiza_forms_instalacion" model="ir.actions.act_window">
+        <field name="name">Instalacion en Puesto</field>
+        <field name="res_model">localiza.forms.operation</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('form_type','=','instalacion_puesto')]</field>
+        <field name="context">{'default_form_type':'instalacion_puesto','default_movement_type':'instalacion'}</field>
+    </record>
+    <record id="action_localiza_forms_inventario" model="ir.actions.act_window">
+        <field name="name">Inventario de Puesto</field>
+        <field name="res_model">localiza.forms.operation</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('form_type','=','inventario_puesto')]</field>
+        <field name="context">{'default_form_type':'inventario_puesto','default_movement_type':'inventario'}</field>
+    </record>
+    <record id="action_localiza_forms_prestamo" model="ir.actions.act_window">
+        <field name="name">Prestamo de Herramientas</field>
+        <field name="res_model">localiza.forms.operation</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('form_type','=','prestamo_herramientas')]</field>
+        <field name="context">{'default_form_type':'prestamo_herramientas','default_movement_type':'salida'}</field>
+    </record>
+</odoo>

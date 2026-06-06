@@ -1,0 +1,8 @@
+<odoo>
+    <record id="seq_localiza_forms_operation" model="ir.sequence">
+        <field name="name">Formulario Operativo V2</field>
+        <field name="code">localiza.forms.operation</field>
+        <field name="prefix">FOR-%(year)s-</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

@@ -1,0 +1,8 @@
+<odoo noupdate="1">
+    <record id="section_general" model="localiza.forms.section"><field name="name">Datos generales</field><field name="code">GENERAL</field><field name="sequence">1</field><field name="form_type">all</field></record>
+    <record id="section_articulos" model="localiza.forms.section"><field name="name">Articulos / codigos</field><field name="code">ART</field><field name="sequence">10</field><field name="form_type">all</field></record>
+    <record id="section_accesorios" model="localiza.forms.section"><field name="name">Accesorios</field><field name="code">ACC</field><field name="sequence">20</field><field name="form_type">entrega_bodega</field></record>
+    <record id="section_inventario_puesto" model="localiza.forms.section"><field name="name">Inventario de puesto</field><field name="code">INV_PUESTO</field><field name="sequence">30</field><field name="form_type">inventario_puesto</field></record>
+    <record id="section_herramientas" model="localiza.forms.section"><field name="name">Herramientas</field><field name="code">HERR</field><field name="sequence">40</field><field name="form_type">prestamo_herramientas</field></record>
+    <record id="section_equipo_industrial" model="localiza.forms.section"><field name="name">Equipo industrial</field><field name="code">IND</field><field name="sequence">50</field><field name="form_type">prestamo_herramientas</field></record>
+</odoo>

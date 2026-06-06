@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_localiza_forms_operation,access.localiza.forms.operation,model_localiza_forms_operation,,1,1,1,1
+access_localiza_forms_operation_line,access.localiza.forms.operation.line,model_localiza_forms_operation_line,,1,1,1,1
+access_localiza_forms_section,access.localiza.forms.section,model_localiza_forms_section,,1,1,1,1
+access_localiza_forms_board,access.localiza.forms.board,model_localiza_forms_board,,1,1,1,1
+access_localiza_forms_import,access.localiza.forms.import,model_localiza_forms_import,,1,1,1,1

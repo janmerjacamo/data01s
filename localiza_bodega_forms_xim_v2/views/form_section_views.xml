@@ -1,0 +1,38 @@
+<odoo>
+    <record id="view_localiza_forms_section_list" model="ir.ui.view">
+        <field name="name">localiza.forms.section.list</field>
+        <field name="model">localiza.forms.section</field>
+        <field name="arch" type="xml">
+            <list string="Secciones">
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="form_type"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_localiza_forms_section_form" model="ir.ui.view">
+        <field name="name">localiza.forms.section.form</field>
+        <field name="model">localiza.forms.section</field>
+        <field name="arch" type="xml">
+            <form string="Seccion">
+                <sheet>
+                    <div class="oe_title"><h1><field name="name"/></h1></div>
+                    <group>
+                        <field name="code"/>
+                        <field name="sequence"/>
+                        <field name="form_type"/>
+                        <field name="active"/>
+                    </group>
+                    <group><field name="notes"/></group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_localiza_forms_section" model="ir.actions.act_window">
+        <field name="name">Secciones de Formularios</field>
+        <field name="res_model">localiza.forms.section</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

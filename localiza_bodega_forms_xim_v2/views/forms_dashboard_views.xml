@@ -1,0 +1,63 @@
+<odoo>
+    <record id="view_localiza_forms_board_kanban" model="ir.ui.view">
+        <field name="name">localiza.forms.board.kanban</field>
+        <field name="model">localiza.forms.board</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_dashboard" create="0" edit="0" delete="0">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="color"/>
+                <field name="icon"/>
+                <field name="total_count"/>
+                <field name="draft_count"/>
+                <field name="validated_count"/>
+                <field name="closed_count"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click o_kanban_card">
+                            <div class="o_kanban_card_header">
+                                <div class="o_kanban_card_header_title">
+                                    <strong><field name="name"/></strong>
+                                    <div class="text-muted"><field name="description"/></div>
+                                </div>
+                            </div>
+                            <div class="container o_kanban_card_content mt8">
+                                <div class="row text-center">
+                                    <div class="col-3"><span class="h3"><field name="total_count"/></span><br/><small>Total</small></div>
+                                    <div class="col-3"><span class="h3"><field name="draft_count"/></span><br/><small>Pend.</small></div>
+                                    <div class="col-3"><span class="h3"><field name="validated_count"/></span><br/><small>Val.</small></div>
+                                    <div class="col-3"><span class="h3"><field name="closed_count"/></span><br/><small>Cerr.</small></div>
+                                </div>
+                            </div>
+                            <div class="o_kanban_card_manage_pane mt8">
+                                <button type="object" name="action_open_records" class="btn btn-primary btn-sm">Ver registros</button>
+                                <button type="object" name="action_open_draft" class="btn btn-secondary btn-sm">Pendientes</button>
+                                <button type="object" name="action_new_form" class="btn btn-link btn-sm">Nuevo</button>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="view_localiza_forms_board_list" model="ir.ui.view">
+        <field name="name">localiza.forms.board.list</field>
+        <field name="model">localiza.forms.board</field>
+        <field name="arch" type="xml">
+            <list string="Panel V2">
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="form_type"/>
+                <field name="total_count"/>
+                <field name="draft_count"/>
+                <field name="validated_count"/>
+                <field name="closed_count"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_localiza_forms_board" model="ir.actions.act_window">
+        <field name="name">Panel Formularios V2</field>
+        <field name="res_model">localiza.forms.board</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,149 @@
+<odoo>
+    <record id="action_report_localiza_forms_operation" model="ir.actions.report">
+        <field name="name">Formulario Operativo V2</field>
+        <field name="model">localiza.forms.operation</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">localiza_bodega_forms_xim_v2.report_localiza_forms_operation_document</field>
+        <field name="report_file">localiza_bodega_forms_xim_v2.report_localiza_forms_operation_document</field>
+        <field name="binding_model_id" ref="model_localiza_forms_operation"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Formulario Operativo - %s' % (object.name)</field>
+    </record>
+
+    <template id="report_localiza_forms_operation_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <style>
+                            .loc-title{font-size:22px;font-weight:700;margin-bottom:4px;}
+                            .loc-sub{font-size:12px;color:#666;margin-bottom:12px;}
+                            .loc-box{border:1px solid #ddd;border-radius:6px;padding:10px;margin-bottom:10px;}
+                            .loc-box h3{font-size:14px;margin:0 0 8px 0;border-bottom:1px solid #eee;padding-bottom:4px;}
+                            .loc-table{width:100%;border-collapse:collapse;font-size:12px;}
+                            .loc-table th{background:#f2f2f2;border:1px solid #ddd;padding:5px;text-align:left;}
+                            .loc-table td{border:1px solid #ddd;padding:5px;vertical-align:top;}
+                            .loc-small{font-size:11px;color:#666;}
+                            .loc-sign{height:70px;border:1px solid #ddd;text-align:center;vertical-align:middle;}
+                            .loc-img{max-height:160px;max-width:260px;border:1px solid #ddd;padding:3px;}
+                        </style>
+                        <div class="loc-title">LOCALIZA - Formulario Operativo V2</div>
+                        <div class="loc-sub">Control documental de bodega, puestos, inventarios y herramientas</div>
+
+                        <div class="loc-box">
+                            <h3>Datos principales</h3>
+                            <table class="loc-table">
+                                <tr>
+                                    <th>Referencia</th><td><span t-field="o.name"/></td>
+                                    <th>Folio externo</th><td><span t-field="o.folio"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Tipo</th><td><span t-field="o.form_type"/></td>
+                                    <th>Fecha / hora</th><td><span t-field="o.date"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Estado</th><td><span t-field="o.state"/></td>
+                                    <th>Movimiento</th><td><span t-field="o.movement_type"/></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="loc-box">
+                            <h3>Puestos y ubicacion</h3>
+                            <table class="loc-table">
+                                <tr>
+                                    <th>Puesto principal</th><td><span t-field="o.puesto_id"/></td>
+                                    <th>Origen</th><td><span t-field="o.puesto_origen_id"/></td>
+                                </tr>
+                                <tr>
+                                    <th>Destino</th><td><span t-field="o.puesto_destino_id"/></td>
+                                    <th>GPS / Ubicacion</th><td><span t-field="o.gps_coordinates"/></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="loc-box">
+                            <h3>Personas</h3>
+                            <table class="loc-table">
+                                <tr><th>Entrega</th><td><span t-field="o.delivered_by"/></td><th>Solicita</th><td><span t-field="o.requested_by"/></td></tr>
+                                <tr><th>Recibe</th><td><span t-field="o.receiver_name"/></td><th>DPI</th><td><span t-field="o.receiver_dpi"/></td></tr>
+                                <tr><th>Supervisor</th><td><span t-field="o.supervisor_name"/></td><th>Guardia / turno</th><td><span t-field="o.guard_name"/></td></tr>
+                                <tr><th>Instala / confirma</th><td><span t-field="o.installer_name"/></td><th>Responsable</th><td><span t-field="o.responsible_id"/></td></tr>
+                            </table>
+                        </div>
+
+                        <div class="loc-box">
+                            <h3>Detalle operativo</h3>
+                            <table class="loc-table">
+                                <tr><th>Serie / codigo principal</th><td><span t-field="o.main_serial"/></td><th>Cantidad controlada</th><td><span t-field="o.controlled_qty"/></td></tr>
+                                <tr><th>Fecha vencimiento</th><td><span t-field="o.expiration_date"/></td><th>Motivo</th><td><span t-field="o.motive"/></td></tr>
+                                <tr><th>Observaciones</th><td colspan="3"><span t-field="o.observations"/></td></tr>
+                                <tr><th>Resumen</th><td colspan="3"><span t-field="o.summary"/></td></tr>
+                            </table>
+                        </div>
+
+                        <div class="loc-box">
+                            <h3>Lineas / articulos</h3>
+                            <table class="loc-table">
+                                <thead>
+                                    <tr><th>Seccion</th><th>Articulo</th><th>Codigo</th><th>Serie</th><th>Cant.</th><th>Mov.</th><th>Estado</th><th>Obs.</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o.line_ids" t-as="l">
+                                        <td><span t-field="l.section_id"/></td>
+                                        <td><span t-esc="l.name or (l.product_id and l.product_id.display_name) or (l.articulo_id and l.articulo_id.display_name) or ''"/></td>
+                                        <td><span t-field="l.code"/></td>
+                                        <td><span t-field="l.serial"/></td>
+                                        <td><span t-field="l.qty"/></td>
+                                        <td><span t-field="l.movement"/></td>
+                                        <td><span t-field="l.condition"/></td>
+                                        <td><span t-field="l.notes"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="loc-box">
+                            <h3>Fotografias</h3>
+                            <table class="loc-table">
+                                <tr>
+                                    <td style="width:33%;text-align:center;">
+                                        <t t-if="o.photo_main"><img t-att-src="image_data_uri(o.photo_main)" class="loc-img"/></t>
+                                        <div class="loc-small">Foto principal</div>
+                                    </td>
+                                    <td style="width:33%;text-align:center;">
+                                        <t t-if="o.photo_document"><img t-att-src="image_data_uri(o.photo_document)" class="loc-img"/></t>
+                                        <div class="loc-small">Documento / respaldo</div>
+                                    </td>
+                                    <td style="width:33%;text-align:center;">
+                                        <t t-if="o.photo_extra"><img t-att-src="image_data_uri(o.photo_extra)" class="loc-img"/></t>
+                                        <div class="loc-small">Foto adicional</div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="loc-box">
+                            <h3>Firmas</h3>
+                            <table class="loc-table">
+                                <tr>
+                                    <th>Firma responsable</th>
+                                    <th>Firma receptor / guardia</th>
+                                </tr>
+                                <tr>
+                                    <td class="loc-sign"><t t-if="o.signature_responsible"><img t-att-src="image_data_uri(o.signature_responsible)" style="max-height:65px;max-width:280px;"/></t></td>
+                                    <td class="loc-sign"><t t-if="o.signature_receiver"><img t-att-src="image_data_uri(o.signature_receiver)" style="max-height:65px;max-width:280px;"/></t></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div t-if="o.legal_text" class="loc-box">
+                            <h3>Responsabilidad</h3>
+                            <p><span t-field="o.legal_text"/></p>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

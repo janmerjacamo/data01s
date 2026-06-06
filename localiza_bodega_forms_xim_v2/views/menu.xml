@@ -1,0 +1,12 @@
+<odoo>
+    <menuitem id="menu_localiza_forms_v2_root" name="Formularios Operativos V2" parent="localiza_bodega_operativa.menu_localiza_root" sequence="15"/>
+    <menuitem id="menu_localiza_forms_v2_panel" name="Panel Operativo" parent="menu_localiza_forms_v2_root" action="action_localiza_forms_board" sequence="1"/>
+    <menuitem id="menu_localiza_forms_v2_all" name="Todos los Formularios" parent="menu_localiza_forms_v2_root" action="action_localiza_forms_operation" sequence="5"/>
+    <menuitem id="menu_localiza_forms_v2_entrega" name="Entrega desde Bodega" parent="menu_localiza_forms_v2_root" action="action_localiza_forms_entrega" sequence="10"/>
+    <menuitem id="menu_localiza_forms_v2_instalacion" name="Instalacion en Puesto" parent="menu_localiza_forms_v2_root" action="action_localiza_forms_instalacion" sequence="20"/>
+    <menuitem id="menu_localiza_forms_v2_inventario" name="Inventario de Puesto" parent="menu_localiza_forms_v2_root" action="action_localiza_forms_inventario" sequence="30"/>
+    <menuitem id="menu_localiza_forms_v2_prestamo" name="Prestamo de Herramientas" parent="menu_localiza_forms_v2_root" action="action_localiza_forms_prestamo" sequence="40"/>
+    <menuitem id="menu_localiza_forms_v2_config" name="Configuracion" parent="menu_localiza_forms_v2_root" sequence="90"/>
+    <menuitem id="menu_localiza_forms_v2_sections" name="Secciones" parent="menu_localiza_forms_v2_config" action="action_localiza_forms_section" sequence="10"/>
+    <menuitem id="menu_localiza_forms_v2_import" name="Importar Formularios" parent="menu_localiza_forms_v2_config" action="action_localiza_forms_import" sequence="20"/>
+</odoo>
