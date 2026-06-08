@@ -1,0 +1,21 @@
+{
+    'name': 'Localiza SRM CRM',
+    'version': '19.0.2.0.0',
+    'category': 'Sales/CRM',
+    'summary': 'CRM Localiza sin Odoo Studio, integrado a CRM, Contactos, Actividades, Calendario y Ventas.',
+    'author': 'XIM Power / Localiza',
+    'license': 'LGPL-3',
+    'depends': ['base', 'mail', 'crm', 'calendar', 'sale_management'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/crm_stage_history_views.xml',
+        'views/crm_lead_views.xml',
+        'views/res_partner_views.xml',
+        'views/mail_activity_views.xml',
+        'views/calendar_event_views.xml',
+        'views/sale_order_views.xml',
+        'views/menus.xml',
+    ],
+    'installable': True,
+    'application': True,
+}
