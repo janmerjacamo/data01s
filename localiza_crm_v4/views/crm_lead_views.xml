@@ -1,0 +1,74 @@
+<odoo>
+    <record id="view_crm_lead_form_localiza_v4" model="ir.ui.view">
+        <field name="name">crm.lead.form.localiza.v4</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_localiza_create_activity" type="object" string="Crear tarea" class="btn-primary"/>
+                <button name="action_localiza_mark_won" type="object" string="Cerrado ganado" class="btn-secondary"/>
+                <button name="action_localiza_mark_lost" type="object" string="Cerrado perdido" class="btn-secondary"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="domain">[('x_localiza_crm_owner_allowed','=',True)]</attribute>
+            </xpath>
+            <xpath expr="//sheet//group" position="inside">
+                <group string="Datos Localiza CRM">
+                    <field name="x_localiza_sequence" readonly="1"/>
+                    <field name="x_localiza_modality"/>
+                    <field name="x_localiza_payment_type"/>
+                </group>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Historial de fases">
+                    <field name="x_localiza_stage_history_ids" readonly="1">
+                        <list>
+                            <field name="stage_id"/>
+                            <field name="expected_revenue" sum="Total"/>
+                            <field name="probability"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="duration_days"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_crm_lead_tree_localiza_v4" model="ir.ui.view">
+        <field name="name">crm.lead.list.localiza.v4</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="x_localiza_sequence"/>
+            </xpath>
+            <xpath expr="//field[@name='expected_revenue']" position="after">
+                <field name="x_localiza_modality"/>
+                <field name="x_localiza_payment_type"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_crm_lead_search_localiza_v4" model="ir.ui.view">
+        <field name="name">crm.lead.search.localiza.v4</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter name="localiza_today_created" string="Creadas hoy" domain="[('create_date','&gt;=', context_today().strftime('%Y-%m-%d 00:00:00'))]"/>
+                <filter name="localiza_current_month" string="Mes actual" domain="[('create_date','&gt;=', (context_today().replace(day=1)).strftime('%Y-%m-%d'))]"/>
+                <filter name="localiza_open" string="Tratos abiertos" domain="[('active','=',True), ('probability','&lt;',100)]"/>
+                <filter name="localiza_rent" string="Renta" domain="[('x_localiza_modality','=','rent')]"/>
+                <filter name="localiza_sale" string="Venta" domain="[('x_localiza_modality','=','sale')]"/>
+                <group expand="0" string="Agrupar Localiza">
+                    <filter name="group_modality" string="Modalidad" context="{'group_by':'x_localiza_modality'}"/>
+                    <filter name="group_payment" string="Tipo de pago" context="{'group_by':'x_localiza_payment_type'}"/>
+                    <filter name="group_salesperson" string="Vendedor" context="{'group_by':'user_id'}"/>
+                    <filter name="group_stage" string="Etapa" context="{'group_by':'stage_id'}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

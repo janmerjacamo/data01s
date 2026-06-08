@@ -1,0 +1,11 @@
+<odoo>
+    <menuitem id="menu_localiza_crm_v4_root" name="Control CRM Localiza" parent="crm.crm_menu_root" sequence="5"/>
+    <menuitem id="menu_localiza_crm_v4_open" name="Tratos abiertos" parent="menu_localiza_crm_v4_root" action="action_localiza_crm_open_deals" sequence="10"/>
+    <menuitem id="menu_localiza_crm_v4_month" name="Ventas del mes" parent="menu_localiza_crm_v4_root" action="action_localiza_crm_current_month" sequence="20"/>
+    <menuitem id="menu_localiza_crm_v4_today" name="Oportunidades creadas hoy" parent="menu_localiza_crm_v4_root" action="action_localiza_crm_created_today" sequence="30"/>
+    <menuitem id="menu_localiza_crm_v4_lost" name="Perdidas del mes" parent="menu_localiza_crm_v4_root" action="action_localiza_crm_lost_month" sequence="40"/>
+    <menuitem id="menu_localiza_crm_v4_history" name="Historial de fases" parent="menu_localiza_crm_v4_root" action="action_localiza_crm_stage_history" sequence="50"/>
+    <menuitem id="menu_localiza_crm_v4_activities" name="Actividades" parent="menu_localiza_crm_v4_root" sequence="60"/>
+    <menuitem id="menu_localiza_crm_v4_activities_today" name="Actividades de hoy" parent="menu_localiza_crm_v4_activities" action="action_localiza_activities_today" sequence="10"/>
+    <menuitem id="menu_localiza_crm_v4_activities_overdue" name="Actividades vencidas" parent="menu_localiza_crm_v4_activities" action="action_localiza_activities_overdue" sequence="20"/>
+</odoo>

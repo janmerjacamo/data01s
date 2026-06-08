@@ -1,0 +1,29 @@
+<odoo>
+    <record id="view_partner_form_localiza_crm_v4" model="ir.ui.view">
+        <field name="name">res.partner.form.localiza.crm.v4</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <div invisible="not x_localiza_duplicate_warning" class="alert alert-warning" role="alert">
+                    <field name="x_localiza_duplicate_warning" readonly="1" nolabel="1"/>
+                </div>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_localiza_create_opportunity" type="object" class="oe_stat_button" icon="fa-briefcase" string="Nueva oportunidad"/>
+                <button name="action_localiza_create_activity" type="object" class="oe_stat_button" icon="fa-tasks" string="Nueva tarea"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_users_form_localiza_crm_v4" model="ir.ui.view">
+        <field name="name">res.users.form.localiza.crm.v4</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='groups_id']" position="after">
+                <field name="x_localiza_crm_owner_allowed"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

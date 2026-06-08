@@ -1,0 +1,34 @@
+<odoo>
+    <record id="action_localiza_crm_current_month" model="ir.actions.act_window">
+        <field name="name">Ventas / oportunidades del mes</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">graph,pivot,list,kanban,form</field>
+        <field name="domain">[('create_date','&gt;=', (context_today().replace(day=1)).strftime('%Y-%m-%d'))]</field>
+        <field name="context">{'group_by':'user_id'}</field>
+    </record>
+    <record id="action_localiza_crm_open_deals" model="ir.actions.act_window">
+        <field name="name">Tratos abiertos / oportunidades en curso</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">kanban,list,pivot,graph,form</field>
+        <field name="domain">[('active','=',True), ('probability','&lt;',100)]</field>
+        <field name="context">{'group_by':'stage_id'}</field>
+    </record>
+    <record id="action_localiza_crm_lost_month" model="ir.actions.act_window">
+        <field name="name">Oportunidades perdidas del mes</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">list,pivot,graph,form</field>
+        <field name="domain">[('active','=',False), ('date_closed','&gt;=', (context_today().replace(day=1)).strftime('%Y-%m-%d'))]</field>
+        <field name="context">{'group_by':'user_id'}</field>
+    </record>
+    <record id="action_localiza_crm_created_today" model="ir.actions.act_window">
+        <field name="name">Oportunidades creadas hoy</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">list,kanban,pivot,graph,form</field>
+        <field name="domain">[('create_date','&gt;=', context_today().strftime('%Y-%m-%d 00:00:00'))]</field>
+    </record>
+    <record id="action_localiza_crm_stage_history" model="ir.actions.act_window">
+        <field name="name">Historial de fases</field>
+        <field name="res_model">localiza.crm.stage.history</field>
+        <field name="view_mode">list,pivot,graph</field>
+    </record>
+</odoo>

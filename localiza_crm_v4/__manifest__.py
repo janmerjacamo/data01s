@@ -1,0 +1,23 @@
+{
+    'name': 'Localiza CRM V4 - Adaptación CRM Odoo 19',
+    'version': '19.0.4.0.0',
+    'category': 'Sales/CRM',
+    'summary': 'Mejoras CRM: anti-duplicados, tareas, historial de fases, reportes y Kanban comercial.',
+    'author': 'XIM Technology / Janmer Jácamo',
+    'license': 'LGPL-3',
+    'depends': ['crm', 'sale_management', 'mail'],
+    'data': [
+        'security/security.xml',
+        'security/ir.model.access.csv',
+        'data/sequence.xml',
+        'views/crm_lead_views.xml',
+        'views/res_partner_views.xml',
+        'views/mail_activity_views.xml',
+        'views/crm_dashboard_views.xml',
+        'views/menu_views.xml',
+    ],
+    'post_init_hook': 'post_init_hook',
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+}

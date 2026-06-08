@@ -1,0 +1,6 @@
+<odoo>
+    <record id="group_crm_allowed_salesperson" model="res.groups">
+        <field name="name">Propietario CRM permitido</field>
+        <field name="category_id" ref="base.module_category_sales_crm"/>
+    </record>
+</odoo>
