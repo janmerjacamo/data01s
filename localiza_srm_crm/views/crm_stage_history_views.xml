@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_localiza_crm_stage_history_list" model="ir.ui.view">
+        <field name="name">localiza.crm.stage.history.list</field>
+        <field name="model">localiza.crm.stage.history</field>
+        <field name="arch" type="xml">
+            <list string="Historial de fases">
+                <field name="change_date"/>
+                <field name="lead_id"/>
+                <field name="previous_stage_id"/>
+                <field name="new_stage_id"/>
+                <field name="days_in_previous_stage"/>
+                <field name="expected_revenue"/>
+                <field name="probability"/>
+                <field name="user_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_localiza_crm_stage_history_form" model="ir.ui.view">
+        <field name="name">localiza.crm.stage.history.form</field>
+        <field name="model">localiza.crm.stage.history</field>
+        <field name="arch" type="xml">
+            <form string="Historial de fases">
+                <sheet>
+                    <group>
+                        <field name="lead_id"/>
+                        <field name="previous_stage_id"/>
+                        <field name="new_stage_id"/>
+                        <field name="user_id"/>
+                        <field name="change_date"/>
+                    </group>
+                    <group>
+                        <field name="days_in_previous_stage"/>
+                        <field name="expected_revenue"/>
+                        <field name="probability"/>
+                    </group>
+                    <field name="notes"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_localiza_crm_stage_history" model="ir.actions.act_window">
+        <field name="name">Historial de fases</field>
+        <field name="res_model">localiza.crm.stage.history</field>
+        <field name="view_mode">list,form,pivot,graph</field>
+    </record>
+</odoo>

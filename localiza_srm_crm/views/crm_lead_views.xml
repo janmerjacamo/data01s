@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_crm_lead_form_localiza_srm" model="ir.ui.view">
+        <field name="name">crm.lead.form.localiza.srm</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_localiza_mark_won" type="object" string="Cerrar ganado" class="btn-primary"/>
+                <button name="action_localiza_mark_lost" type="object" string="Cerrar perdido"/>
+                <button name="action_localiza_open_stage_history" type="object" string="Historial de fases"/>
+            </xpath>
+            <xpath expr="//field[@name='expected_revenue']" position="after">
+                <field name="localiza_modalidad"/>
+                <field name="localiza_condicion_pago"/>
+                <field name="localiza_fecha_cierre_real" readonly="1"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Historial de fases">
+                    <field name="localiza_stage_history_ids" readonly="1">
+                        <list>
+                            <field name="change_date"/>
+                            <field name="previous_stage_id"/>
+                            <field name="new_stage_id"/>
+                            <field name="days_in_previous_stage"/>
+                            <field name="expected_revenue"/>
+                            <field name="probability"/>
+                            <field name="user_id"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_crm_case_opportunities_filter_localiza" model="ir.ui.view">
+        <field name="name">crm.lead.search.localiza.srm</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <separator/>
+                <filter string="Creadas hoy" name="localiza_created_today" domain="[('create_date','&gt;=', context_today().strftime('%Y-%m-%d 00:00:00'))]"/>
+                <filter string="Ventas del mes" name="localiza_sales_month" domain="[('date_closed','&gt;=', context_today().strftime('%Y-%m-01')), ('probability','=',100)]"/>
+                <filter string="Perdidas del mes" name="localiza_lost_month" domain="[('active','=',False), ('date_closed','&gt;=', context_today().strftime('%Y-%m-01'))]"/>
+                <filter string="Renta" name="localiza_renta" domain="[('localiza_modalidad','=','renta')]"/>
+                <filter string="Venta" name="localiza_venta" domain="[('localiza_modalidad','=','venta')]"/>
+                <filter string="Agrupar por vendedor" name="localiza_group_user" context="{'group_by':'user_id'}"/>
+                <filter string="Agrupar por etapa" name="localiza_group_stage" context="{'group_by':'stage_id'}"/>
+                <filter string="Agrupar por mes cierre" name="localiza_group_close_month" context="{'group_by':'date_deadline:month'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_localiza_crm_open_deals" model="ir.actions.act_window">
+        <field name="name">Tratos abiertos</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">kanban,list,form,pivot,graph</field>
+        <field name="domain">[('type','=','opportunity'), ('active','=',True), ('probability','&lt;',100)]</field>
+        <field name="context">{'search_default_localiza_group_stage': 1}</field>
+    </record>
+
+    <record id="action_localiza_crm_sales_month" model="ir.actions.act_window">
+        <field name="name">Ventas de este mes</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">list,kanban,form,pivot,graph</field>
+        <field name="domain">[('type','=','opportunity'), ('probability','=',100), ('date_closed','&gt;=', context_today().strftime('%Y-%m-01'))]</field>
+        <field name="context">{'search_default_localiza_group_user': 1}</field>
+    </record>
+
+    <record id="action_localiza_crm_created_today" model="ir.actions.act_window">
+        <field name="name">Oportunidades creadas hoy</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">list,kanban,form,pivot,graph</field>
+        <field name="domain">[('type','=','opportunity'), ('create_date','&gt;=', context_today().strftime('%Y-%m-%d 00:00:00'))]</field>
+    </record>
+
+    <record id="action_localiza_crm_lost_month" model="ir.actions.act_window">
+        <field name="name">Oportunidades perdidas del mes</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">list,kanban,form,pivot,graph</field>
+        <field name="domain">[('type','=','opportunity'), ('active','=',False), ('date_closed','&gt;=', context_today().strftime('%Y-%m-01'))]</field>
+    </record>
+
+    <record id="action_localiza_crm_by_salesperson" model="ir.actions.act_window">
+        <field name="name">Informe por vendedor</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">pivot,graph,list,kanban,form</field>
+        <field name="domain">[('type','=','opportunity')]</field>
+        <field name="context">{'group_by':'user_id'}</field>
+    </record>
+</odoo>

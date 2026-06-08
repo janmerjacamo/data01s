@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_localiza_srm" model="ir.ui.view">
+        <field name="name">res.partner.form.localiza.srm</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button name="action_localiza_create_opportunity" type="object" string="Crear oportunidad" class="btn-primary"/>
+                    <button name="action_localiza_create_activity" type="object" string="Crear tarea"/>
+                    <button name="action_localiza_view_opportunities" type="object" string="Ver oportunidades"/>
+                    <button name="action_localiza_view_activities" type="object" string="Ver tareas"/>
+                </header>
+            </xpath>
+            <xpath expr="//sheet/notebook" position="inside">
+                <page string="Localiza Comercial">
+                    <group>
+                        <field name="localiza_lead_count" readonly="1"/>
+                        <field name="localiza_activity_count" readonly="1"/>
+                    </group>
+                    <field name="localiza_commercial_note" placeholder="Notas comerciales del cliente..."/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

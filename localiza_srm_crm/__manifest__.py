@@ -1,0 +1,20 @@
+{
+    'name': 'Localiza SRM CRM',
+    'version': '19.0.1.0.2',
+    'category': 'Sales/CRM',
+    'summary': 'CRM comercial Localiza sin Odoo Studio: control de duplicados, tareas, cierres, historial de fases y reportes.',
+    'author': 'XIM Power / Localiza',
+    'license': 'LGPL-3',
+    'depends': ['base', 'mail', 'crm', 'sale_management'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/crm_stage_history_views.xml',
+        'views/res_partner_views.xml',
+        'views/crm_lead_views.xml',
+        'views/mail_activity_views.xml',
+        'views/sale_order_views.xml',
+        'views/crm_dashboard_menus.xml',
+    ],
+    'installable': True,
+    'application': True,
+}
