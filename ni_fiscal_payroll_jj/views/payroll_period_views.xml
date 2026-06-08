@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ni_payroll_period_list" model="ir.ui.view">
+        <field name="name">ni.payroll.period.list</field>
+        <field name="model">ni.payroll.period</field>
+        <field name="arch" type="xml">
+            <list string="Períodos de Nómina">
+                <field name="name"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="payment_date"/>
+                <field name="payslip_count"/>
+                <field name="total_gross"/>
+                <field name="total_net"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_ni_payroll_period_form" model="ir.ui.view">
+        <field name="name">ni.payroll.period.form</field>
+        <field name="model">ni.payroll.period</field>
+        <field name="arch" type="xml">
+            <form string="Período de Nómina">
+                <header>
+                    <button name="action_generate_payslips" type="object" string="Generar boletas" class="btn-primary"/>
+                    <button name="action_compute_all" type="object" string="Calcular todo" class="btn-primary"/>
+                    <button name="action_approve" type="object" string="Aprobar"/>
+                    <button name="action_mark_paid" type="object" string="Marcar pagado"/>
+                    <button name="action_cancel" type="object" string="Cancelar"/>
+                    <button name="action_reset_draft" type="object" string="Reabrir"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,computed,approved,paid"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group><field name="name"/><field name="company_id"/></group>
+                        <group><field name="date_start"/><field name="date_end"/><field name="payment_date"/></group>
+                    </group>
+                    <group string="Totales">
+                        <field name="currency_id" invisible="1"/>
+                        <field name="payslip_count"/>
+                        <field name="total_gross"/>
+                        <field name="total_deductions"/>
+                        <field name="total_net"/>
+                    </group>
+                    <notebook>
+                        <page string="Boletas">
+                            <field name="payslip_ids">
+                                <list editable="bottom">
+                                    <field name="employee_id"/>
+                                    <field name="basic_salary"/>
+                                    <field name="total_gross"/>
+                                    <field name="total_deductions"/>
+                                    <field name="total_net"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="action_ni_payroll_period" model="ir.actions.act_window">
+        <field name="name">Períodos de Nómina</field>
+        <field name="res_model">ni.payroll.period</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

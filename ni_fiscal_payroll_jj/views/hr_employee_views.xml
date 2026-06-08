@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_ni_payroll" model="ir.ui.view">
+        <field name="name">hr.employee.form.ni.payroll</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Nómina Nicaragua">
+                    <group>
+                        <group string="Datos fiscales">
+                            <field name="ni_payroll_enabled"/>
+                            <field name="ni_identification"/>
+                            <field name="ni_inss_number"/>
+                            <field name="ni_employee_type"/>
+                            <field name="ni_hire_date"/>
+                        </group>
+                        <group string="Pago">
+                            <field name="currency_id" invisible="1"/>
+                            <field name="ni_basic_salary"/>
+                            <field name="ni_payment_frequency"/>
+                            <field name="ni_bank_account"/>
+                        </group>
+                    </group>
+                    <field name="ni_salary_notes" placeholder="Notas internas de nómina..."/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

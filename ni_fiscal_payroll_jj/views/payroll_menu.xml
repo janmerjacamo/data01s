@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_ni_payroll_root" name="Nómina NI" sequence="35" web_icon="hr,static/description/icon.png"/>
+    <menuitem id="menu_ni_payroll_operations" name="Operaciones" parent="menu_ni_payroll_root" sequence="10"/>
+    <menuitem id="menu_ni_payroll_period" name="Períodos" parent="menu_ni_payroll_operations" action="action_ni_payroll_period" sequence="10"/>
+    <menuitem id="menu_ni_payroll_payslip" name="Boletas" parent="menu_ni_payroll_operations" action="action_ni_payroll_payslip" sequence="20"/>
+    <menuitem id="menu_ni_payroll_liquidation" name="Liquidaciones" parent="menu_ni_payroll_operations" action="action_ni_payroll_liquidation" sequence="30"/>
+    <menuitem id="menu_ni_payroll_config" name="Configuración" parent="menu_ni_payroll_root" sequence="90"/>
+    <menuitem id="menu_ni_payroll_rule" name="Reglas de Nómina" parent="menu_ni_payroll_config" action="action_ni_payroll_rule" sequence="10"/>
+</odoo>

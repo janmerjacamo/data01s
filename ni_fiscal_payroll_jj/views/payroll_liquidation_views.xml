@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ni_payroll_liquidation_list" model="ir.ui.view">
+        <field name="name">ni.payroll.liquidation.list</field>
+        <field name="model">ni.payroll.liquidation</field>
+        <field name="arch" type="xml">
+            <list string="Liquidaciones">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="monthly_salary"/>
+                <field name="total_to_pay"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_ni_payroll_liquidation_form" model="ir.ui.view">
+        <field name="name">ni.payroll.liquidation.form</field>
+        <field name="model">ni.payroll.liquidation</field>
+        <field name="arch" type="xml">
+            <form string="Liquidación Laboral">
+                <header>
+                    <button name="action_compute" type="object" string="Calcular" class="btn-primary"/>
+                    <button name="action_approve" type="object" string="Aprobar"/>
+                    <button name="action_mark_paid" type="object" string="Marcar pagada"/>
+                    <button name="action_cancel" type="object" string="Cancelar"/>
+                    <button name="action_reset_draft" type="object" string="Reabrir"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,computed,approved,paid"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="company_id"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </group>
+                        <group>
+                            <field name="monthly_salary"/>
+                            <field name="pending_salary"/>
+                            <field name="pending_vacation_days"/>
+                            <field name="other_income"/>
+                            <field name="other_deductions"/>
+                        </group>
+                    </group>
+                    <group string="Resultado de liquidación">
+                        <field name="vacation_amount"/>
+                        <field name="thirteenth_month_amount"/>
+                        <field name="severance_amount"/>
+                        <field name="total_to_pay"/>
+                    </group>
+                    <field name="notes" placeholder="Notas de revisión legal o administrativa..."/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="action_ni_payroll_liquidation" model="ir.actions.act_window">
+        <field name="name">Liquidaciones</field>
+        <field name="res_model">ni.payroll.liquidation</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

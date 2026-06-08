@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ni_payroll_period_user,ni.payroll.period.user,model_ni_payroll_period,base.group_user,1,1,1,1
+access_ni_payroll_payslip_user,ni.payroll.payslip.user,model_ni_payroll_payslip,base.group_user,1,1,1,1
+access_ni_payroll_payslip_line_user,ni.payroll.payslip.line.user,model_ni_payroll_payslip_line,base.group_user,1,1,1,1
+access_ni_payroll_rule_user,ni.payroll.rule.user,model_ni_payroll_rule,base.group_user,1,1,1,1
+access_ni_payroll_liquidation_user,ni.payroll.liquidation.user,model_ni_payroll_liquidation,base.group_user,1,1,1,1

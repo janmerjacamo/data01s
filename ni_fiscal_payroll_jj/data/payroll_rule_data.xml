@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="rule_basic_salary" model="ni.payroll.rule"><field name="name">Salario ordinario</field><field name="code">BASIC</field><field name="sequence">10</field><field name="rule_type">earning</field></record>
+    <record id="rule_overtime" model="ni.payroll.rule"><field name="name">Horas extras</field><field name="code">OT</field><field name="sequence">20</field><field name="rule_type">earning</field></record>
+    <record id="rule_bonus" model="ni.payroll.rule"><field name="name">Bonos y comisiones</field><field name="code">BONUS</field><field name="sequence">30</field><field name="rule_type">earning</field></record>
+    <record id="rule_inss_employee" model="ni.payroll.rule"><field name="name">INSS laboral 7%</field><field name="code">INSS_EMP</field><field name="sequence">100</field><field name="rule_type">deduction</field></record>
+    <record id="rule_ir" model="ni.payroll.rule"><field name="name">IR salarial</field><field name="code">IR</field><field name="sequence">110</field><field name="rule_type">deduction</field></record>
+    <record id="rule_inss_employer" model="ni.payroll.rule"><field name="name">INSS patronal estimado</field><field name="code">INSS_PAT</field><field name="sequence">200</field><field name="rule_type">employer</field></record>
+    <record id="rule_inatec" model="ni.payroll.rule"><field name="name">INATEC patronal 2%</field><field name="code">INATEC</field><field name="sequence">210</field><field name="rule_type">employer</field></record>
+</odoo>

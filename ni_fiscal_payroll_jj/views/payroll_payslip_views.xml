@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ni_payroll_payslip_list" model="ir.ui.view">
+        <field name="name">ni.payroll.payslip.list</field>
+        <field name="model">ni.payroll.payslip</field>
+        <field name="arch" type="xml">
+            <list string="Boletas de Nómina">
+                <field name="name"/>
+                <field name="period_id"/>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="basic_salary"/>
+                <field name="total_gross"/>
+                <field name="inss_employee"/>
+                <field name="ir_salary"/>
+                <field name="total_net"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_ni_payroll_payslip_form" model="ir.ui.view">
+        <field name="name">ni.payroll.payslip.form</field>
+        <field name="model">ni.payroll.payslip</field>
+        <field name="arch" type="xml">
+            <form string="Boleta de Nómina">
+                <header>
+                    <button name="action_compute" type="object" string="Calcular" class="btn-primary"/>
+                    <button name="action_approve" type="object" string="Aprobar"/>
+                    <button name="action_mark_paid" type="object" string="Marcar pagada"/>
+                    <button name="action_cancel" type="object" string="Cancelar"/>
+                    <button name="action_reset_draft" type="object" string="Reabrir"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,computed,approved,paid"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="period_id"/>
+                            <field name="employee_id"/>
+                            <field name="department_id"/>
+                            <field name="job_id"/>
+                        </group>
+                        <group>
+                            <field name="company_id"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="basic_salary"/>
+                            <field name="worked_days"/>
+                        </group>
+                    </group>
+                    <group string="Entradas manuales">
+                        <field name="overtime_amount"/>
+                        <field name="bonus_amount"/>
+                        <field name="absence_amount"/>
+                        <field name="other_deductions"/>
+                    </group>
+                    <group string="Resultado fiscal">
+                        <field name="total_gross"/>
+                        <field name="inss_employee"/>
+                        <field name="ir_salary"/>
+                        <field name="total_deductions"/>
+                        <field name="total_net"/>
+                        <field name="inss_employer"/>
+                        <field name="inatec_employer"/>
+                    </group>
+                    <notebook>
+                        <page string="Líneas calculadas">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence"/>
+                                    <field name="code"/>
+                                    <field name="name"/>
+                                    <field name="line_type"/>
+                                    <field name="amount"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Notas">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="action_ni_payroll_payslip" model="ir.actions.act_window">
+        <field name="name">Boletas de Nómina</field>
+        <field name="res_model">ni.payroll.payslip</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_ni_payroll_rule_list" model="ir.ui.view">
+        <field name="name">ni.payroll.rule.list</field>
+        <field name="model">ni.payroll.rule</field>
+        <field name="arch" type="xml">
+            <list string="Reglas de Nómina" editable="bottom">
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="rule_type"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    <record id="action_ni_payroll_rule" model="ir.actions.act_window">
+        <field name="name">Reglas de Nómina</field>
+        <field name="res_model">ni.payroll.rule</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
